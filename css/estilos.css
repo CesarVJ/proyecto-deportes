@@ -88,22 +88,22 @@ footer > address{
 
 /* Seccion de articulos */
 .articulos{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill, 15rem );
+    justify-content: center;
 }
 
 .articulo{
-    flex: 0 20%;
-    height: 250px;
-    margin: 20px;
-    background-color: var(--color4);
+    /*flex: 0 20%;*/
+    height: 15rem;
+    background-color: #ff5722;
+
 }
 
 
 /* Vista de moviles */
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 650px){
     #logo{
         float: none;
         display: block;
@@ -139,8 +139,8 @@ footer > address{
         border-bottom-width: 4px;
         border-color: var(--color4);
     }
-    .articulo{
-        flex: 0 100%;
+    .articulos{
+        grid-template-columns: repeat(auto-fill, 250px );
     }
     
 }
