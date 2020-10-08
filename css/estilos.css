@@ -1,0 +1,146 @@
+:root{
+--color-principal: #eeeeee;
+--color-secundario: #686d76;
+--color3: #373a40;
+--color4: #19d3da;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#logo{
+    float: left;
+}
+#logo > img{
+    height: 6rem;
+    float: left;
+}
+
+.contenedor{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas: "cabecera" "menu" "principal" "pie";
+    min-height: 100vh;
+}
+
+/* Seccion de la cabecera */
+header{
+    grid-area: cabecera;
+    background-color: var(--color3);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 0px 7%;
+}
+
+header figure{
+    margin-right: 4rem;
+}
+
+/* Seccion del menu */
+nav{
+    grid-area: menu;
+    background-color: var(--color-secundario);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0px 7%;
+}
+nav > a{
+    text-decoration: none;
+    color: var(--color-principal);
+    padding: 1rem 2rem;
+    vertical-align: center;
+}
+
+nav > a:hover{
+    border-bottom-style: solid;
+    border-bottom-width: 4px;
+    border-color: var(--color4);
+}
+
+.icono{
+    width: 35px;
+}
+
+/* Seccion principal */
+main{
+    grid-area: principal;
+    background-color: var(--color-principal);
+    padding: 3% 7%;
+}
+
+/* Seccion del Pie */
+footer{
+    grid-area: pie;
+    background-color: var(--color3);
+    color: #fff;
+    text-align: center;
+}
+footer > address{
+    vertical-align: 50%;
+    margin: 1.4rem 0px;
+}
+
+/* Seccion de articulos */
+.articulos{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.articulo{
+    flex: 0 20%;
+    height: 250px;
+    margin: 20px;
+    background-color: var(--color4);
+}
+
+
+/* Vista de moviles */
+@media only screen and (max-width: 768px){
+    #logo{
+        float: none;
+        display: block;
+    }
+    #logo > img{
+        float: none;
+    }
+    /* Seccion de la cabecera */
+    header{
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding-bottom: 1.3rem;
+    }
+    header figure{
+        margin-right: 0px;
+    }
+    
+    /* Seccion del menu */
+    nav{
+        justify-content: center;
+        padding: 0px 0%;
+    }
+    nav > a{
+        text-decoration: none;
+        color: var(--color-principal);
+        padding: 1rem 2rem;
+        vertical-align: center;
+    }
+
+    nav > a:hover{
+        border-bottom-style: solid;
+        border-bottom-width: 4px;
+        border-color: var(--color4);
+    }
+    .articulo{
+        flex: 0 100%;
+    }
+    
+}
