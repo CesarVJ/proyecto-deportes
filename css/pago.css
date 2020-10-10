@@ -1,0 +1,83 @@
+.contenedor-pago {
+    background-color: #fff;
+    max-width: 60%;
+    margin: 2rem auto;
+    padding: 1.3rem;
+    box-shadow: -7px 10px 16px -12px rgba(0,0,0,0.75);
+    border-radius: 10px;
+    display: grid;
+    grid-template-areas: "titulo titulo"
+        "nombre-titular numero-tarjeta"
+        "fecha-expiracion codigo-seguridad"
+        "pagar  pagar";
+    grid-gap: 1.3rem;
+}
+
+#titulo-pago {
+    font-weight: bold;
+    grid-area: titulo;
+}
+
+.nombre-titular {
+    grid-area: nombre-titular;
+}
+
+.numero-tarjeta {
+    grid-area: numero-tarjeta;
+}
+
+.fecha-expiracion {
+    grid-area: fecha-expiracion;
+}
+
+.codigo-seguridad {
+    grid-area: codigo-seguridad;
+}
+
+#codigo-seguridad {
+    width: 30%;
+}
+.pagar{
+    grid-area: pagar;
+
+}
+.pagar > input{
+    font-size: 1.8rem;
+    background-color: #ee6f57;
+    color: #fff;
+    border-radius: 2px;
+    border: 0px;
+    padding: 1rem 5rem;
+    outline: none;
+    cursor: pointer;
+}
+.pagar > input:hover{
+    transform: scale(1.05);
+}
+.contenedor-pago input{
+    font-size: 1.2rem;
+    padding: 0.3rem 0.6rem;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+
+@media only screen and (max-width: 992px){
+    .contenedor-pago {
+        min-width: 100%;
+        margin: 0;
+    }
+}
+
+@media only screen and (max-width: 650px){
+    .contenedor-pago {
+        min-width: 100%;
+        margin: 0;
+        grid-template-areas: "titulo"
+        "nombre-titular" "numero-tarjeta"
+        "fecha-expiracion" "codigo-seguridad"
+        "pagar";
+    }
+}
