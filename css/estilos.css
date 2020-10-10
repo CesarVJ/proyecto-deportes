@@ -61,17 +61,33 @@ nav{
     align-items: center;
     padding: 0px 7%;
 }
-nav > a{
+nav a{
     text-decoration: none;
     color: var(--color-principal);
     padding: 1rem 2rem;
     vertical-align: center;
 }
 
-nav > a:hover{
+nav a:hover{
     border-bottom-style: solid;
     border-bottom-width: 4px;
     border-color: var(--color4);
+}
+.menu > div{
+    position: relative;
+    text-align: center;
+}
+.menu > div:hover > .lineas{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}
+.lineas{
+    display: none;
+    position: absolute;
+}
+.submenu{
+    background-color: var(--color-secundario);
 }
 
 .icono{
@@ -81,7 +97,7 @@ nav > a:hover{
 /* Seccion principal */
 main{
     grid-area: principal;
-    background-color: var(--color-principal);
+    background-color: #fff;
     padding: 3% 7%;
 }
 
@@ -108,8 +124,27 @@ footer > address{
 .articulo{
     /*flex: 0 20%;*/
     height: 15rem;
-    background-color: #ff5722;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px dashed black;
+}
+.imagen-articulo{
+    max-width: 70%;
+}
+.nombre-articulo{
+    font-size: 2rem;
+}
+#ver-articulo{
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    border: 0px;
+}
+.filtro{
+    text-align: right;
+    margin-bottom: 1rem ;
+    padding-right: 2rem;
 }
 
 
@@ -138,14 +173,14 @@ footer > address{
         justify-content: center;
         padding: 0px 0%;
     }
-    nav > a{
+    nav a{
         text-decoration: none;
         color: var(--color-principal);
         padding: 1rem 2rem;
         vertical-align: center;
     }
 
-    nav > a:hover{
+    nav a:hover{
         border-bottom-style: solid;
         border-bottom-width: 4px;
         border-color: var(--color4);
