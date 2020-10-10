@@ -13,10 +13,22 @@
 
 #logo{
     float: left;
+    
 }
 #logo > img{
     height: 6rem;
     float: left;
+}
+.vueltas{
+    animation-name: vueltas;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+}
+
+@keyframes vueltas {
+    0% { transform: rotate3d(1, 0.6, 0.6, 0deg); }
+    100% { transform: rotate3d(0.7, 0.8, 0.8, 360deg); }
 }
 
 .contenedor{
