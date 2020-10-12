@@ -5,6 +5,7 @@
     padding: 1.3rem;
     box-shadow: -7px 10px 16px -12px rgba(0,0,0,0.75);
     border-radius: 10px;
+    border: 1px solid black;
     display: grid;
     grid-template-areas: "titulo titulo"
         "nombre-titular numero-tarjeta"

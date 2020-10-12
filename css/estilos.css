@@ -244,6 +244,37 @@ footer > address{
     font-size: 18px;
 }
 
+/* Panel de admin*/
+/* Seccion de articulos */
+.opciones{
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill, 15rem );
+    justify-content: center;
+}
+
+.opcion{
+    /*flex: 0 20%;*/
+    height: 15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px dashed black;
+}
+.imagen-opcion{
+    max-width: 70%;
+}
+.nombre-opcion{
+    font-size: 2rem;
+}
+#ver-opcion{
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    border: 0px;
+    font-weight: bold;
+}
+
 
 /* Inicio de sesion */
 .contenedor-login {
