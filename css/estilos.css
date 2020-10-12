@@ -115,27 +115,47 @@ footer > address{
 
 /* Seccion de articulos */
 .articulos{
-    display: grid;
-    grid-gap: 20px;
-    grid-template-columns: repeat(auto-fill, 15rem );
-    justify-content: center;
+    border-collapse: collapse;
+    margin: 25px auto;
+    font-size: 1.2rem;
+    min-width: 80%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    border-radius: 10px;
 }
 
-.articulo{
-    /*flex: 0 20%;*/
-    height: 15rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    border: 1px dashed black;
+.articulos thead tr {
+    background-color: #009879;
+    color: #ffffff;
+}
+
+.articulos th, .articulos td {
+    padding: 1rem 0.6rem;
+}
+
+.articulo {
+
 }
 .imagen-articulo{
-    max-width: 70%;
+    max-width: 7rem;
 }
 .nombre-articulo{
     font-size: 2rem;
 }
+
+.articulos tbody tr {
+    border-bottom: 1px #fff solid;
+}
+
+.articulos tbody tr:nth-of-type(odd) {
+    border-bottom: 2px #009879 solid;
+}
+
+.articulos tbody tr:last-of-type {
+    border-bottom: 2px #009879 solid;
+}
+
+
 #ver-articulo{
     padding: 0.5rem 1rem;
     border-radius: 10px;
@@ -145,6 +165,55 @@ footer > address{
     text-align: right;
     margin-bottom: 1rem ;
     padding-right: 2rem;
+}
+
+/* Seccion de Formularios */
+#formularios{
+    margin: 0 auto;
+    font-weight: bold;
+    font-size: 25px;
+    color: #333536;
+}
+
+/* Titulo página */
+#tituloP{
+    font-weight: bold;
+    font-size: 45px;
+    text-transform: capitalize;
+    text-align: center;
+    color:#333536;
+}
+
+/* Inputs */
+.inpForm{
+    width: 350px;
+    height: 25px;
+}
+
+/* boton */
+#boton{
+    width: 130px;
+    height: 35px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 45.5%;
+}
+
+/* Seleccionar Archivos */
+#archivo{
+    width: 600px;
+    height: 35px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Sección Administrador */
+#ir{
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    border: 0px;
+    font-weight: bold;
+    font-size: 18px;
 }
 
 
