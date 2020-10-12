@@ -148,6 +148,11 @@ footer > address{
 }
 
 
+/* Inicio de sesion */
+.contenedor-login {
+    margin: 0 auto;
+}
+
 /* Vista de moviles */
 @media only screen and (max-width: 650px){
     #logo{
