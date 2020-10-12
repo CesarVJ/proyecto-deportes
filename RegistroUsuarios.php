@@ -13,7 +13,13 @@
 </script>
 
 <?php
+$inicio = "index.php";
+$registro = "#";
+$login = "login.php";
+
 include_once("cabecera.html");
+include_once("menu.php");
+
 ?>
 
 <main>

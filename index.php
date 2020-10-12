@@ -1,7 +1,7 @@
 <?php
 
 $inicio = "#";
-$registro = "registro.php";
+$registro = "RegistroUsuarios.php";
 $login = "login.php";
 include_once("cabecera.html");
 include_once("menu.php");
@@ -18,7 +18,7 @@ include_once("menu.php");
         </form>
     </section>
 
-    <table class="articulos" >
+    <table class="articulos">
         <thead>
             <tr>
                 <td>Producto</td>
@@ -26,6 +26,7 @@ include_once("menu.php");
                 <td>Equipo</td>
                 <td>Carcateristicas</td>
                 <td>Precio</td>
+                <td>Cantidad</td>
             </tr>
         </thead>
         <tbody>
@@ -35,16 +36,22 @@ include_once("menu.php");
                     <img src="./media/Balones/Adidas.jpg" alt="" class="imagen-articulo">
                 </td>
                 <td>
-                    <p>Linea 1</p>
+                    <p>Balones</p>
                 </td>
                 <td>
-                    <p>Equipo 1</p>
+                    <p>Juventus</p>
                 </td>
                 <td>
-                    <p>Caracteristicas</p>
+                    <ul>
+                        <li>Color blanco</li>
+                        <li>Otra caracterstica</li>
+                    </ul>
                 </td>
                 <td>
-                    <p>Precio</p>
+                    <p>$320</p>
+                </td>
+                <td>
+                    <input type="number" class="cantidadArt">
                 </td>
             </tr>
             <tr class="articulo">
@@ -62,11 +69,18 @@ include_once("menu.php");
                     <p>Caracteristicas</p>
                 </td>
                 <td>
-                    <p>Precio</p>
+                    <p>$200</p>
+                </td>
+                <td>
+                    <input type="number" class="cantidadArt">
                 </td>
             </tr>
         </tbody>
     </table>
+
+    <form action="" id="formComprar">
+        <input type="submit" class="btnHacerCompra" value="Realizar compra">
+    </form>
 </main>
 <?php include_once("pie.html")?>
 </div>

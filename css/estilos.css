@@ -116,12 +116,12 @@ footer > address{
 /* Seccion de articulos */
 .articulos{
     border-collapse: collapse;
-    margin: 25px auto;
+    margin: 1rem auto;
     font-size: 1.2rem;
-    min-width: 80%;
+    min-width: 70%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     text-align: center;
-    border-radius: 10px;
+    table-layout: fixed;
 }
 
 .articulos thead tr {
@@ -155,7 +155,35 @@ footer > address{
     border-bottom: 2px #009879 solid;
 }
 
+.articulos td{
+    max-width: 8rem;
+    word-wrap:break-word
+}
+.articulos ul{
+    list-style: none;
+}
+#formComprar{
+    text-align: right;
+    max-width: 90%;
+}
+.btnHacerCompra{
+    padding: 1rem 1.7rem;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    background-color: #009879;
+    color: #fff;
+    border: 0px;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+}
 
+.btnHacerCompra:hover{
+    transform: scale(1.03);
+}
+.cantidadArt{
+    max-width: 50px;
+}
 #ver-articulo{
     padding: 0.5rem 1rem;
     border-radius: 10px;
@@ -260,7 +288,13 @@ footer > address{
         border-color: var(--color4);
     }
     .articulos{
-        grid-template-columns: repeat(auto-fill, 250px );
+        padding: 0;
+    }
+    .imagen-articulo{
+        max-width: 4rem;
+    }
+    .nombre-articulo{
+        font-size: 1rem;
     }
     
 }

@@ -1,6 +1,7 @@
 <?php
 $inicio = "index.php";
 $login = "#";
+$registro = "RegistroUsuarios.php";
 include_once("cabecera.html");
 include_once("menu.php");
 
