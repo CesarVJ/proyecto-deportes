@@ -2,9 +2,10 @@
 
 include_once("Equipo.php");
 abstract class Articulo{
-    protected $claveProducto;
+    protected $ClaveArticulo;
     protected $nombre;
-    protected $precio;
+	protected $precio;
+	protected $imagen;
     protected $oEquipo;
 
     public abstract function buscar();
@@ -18,12 +19,12 @@ abstract class Articulo{
     public abstract function eliminar();
 
 
-    public function getClaveProducto(){
-		return $this->claveProducto;
+    public function getClaveArticulo(){
+		return $this->ClaveArticulo;
 	}
 
-	public function setClaveProducto($claveProducto){
-		$this->claveProducto = $claveProducto;
+	public function setClaveArticulo($ClaveArticulo){
+		$this->ClaveArticulo = $ClaveArticulo;
 	}
 
 	public function getNombre(){
@@ -48,6 +49,14 @@ abstract class Articulo{
 
 	public function setOEquipo($oEquipo){
 		$this->oEquipo = $oEquipo;
+	}
+
+	public function getImagen(){
+		return $this->imagen;
+	}
+
+	public function setImagen($imagen){
+		$this->imagen = $imagen;
 	}
 
 

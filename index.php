@@ -9,7 +9,7 @@ include_once("menu.php");
 ?>
 <main>
 <script src="./js/controlJS.js?=<?php echo time();?>"> </script>
-    <section class="filtro">
+    <section class="filtro" style="display:flex; justify-content: space-between;">
         <form onsubmit="buscarProductos(); return false;">
             <label for="tipoEquipo">Filtrar por equipo:</label>
             <select id="tipoEquipo" name="tipoEquipo">
@@ -17,28 +17,38 @@ include_once("menu.php");
             </select>
             <input type="submit" value="Filtrar" />
         </form>
+        <form onsubmit="consultarLinea(); return false;">
+            <label for="tipoLinea">Filtrar por Linea:</label>
+            <select id="tipoLinea" name="tipoLinea">
+                <option value="U">Uniformes</option>
+                <option value="R">Ropa para niños</option>
+                <option value="B">Balones</option>
+                <option value="S">Souvenirs</option>
+            </select>
+            <input type="submit" value="Filtrar" />
+        </form>
     </section>
 
-    <table class="articulos">
+    <table class="articulos" id="articulos">
         <thead>
             <tr>
                 <td>Producto</td>
-                <td>Linea</td>
+                <!--<td>Linea</td>-->
                 <td>Equipo</td>
                 <td>Carcateristicas</td>
                 <td>Precio</td>
                 <td>Cantidad</td>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="bodyTablaArt">
             <tr class="articulo">
                 <td>
                     <p>Producto 1</p>
                     <img src="./media/Balones/Adidas.jpg" alt="" class="imagen-articulo">
                 </td>
-                <td>
+                <!--<td>
                     <p>Balones</p>
-                </td>
+                </td>-->
                 <td>
                     <p>Juventus</p>
                 </td>
@@ -50,27 +60,6 @@ include_once("menu.php");
                 </td>
                 <td>
                     <p>$320</p>
-                </td>
-                <td>
-                    <input type="number" class="cantidadArt">
-                </td>
-            </tr>
-            <tr class="articulo">
-                <td>
-                    <p>Producto 2</p>
-                    <img src="./media/Uniformes/AmericaLocal.png" alt="" class="imagen-articulo">
-                </td>
-                <td>
-                    <p>Linea 1</p>
-                </td>
-                <td>
-                    <p>Equipo 1</p>
-                </td>
-                <td>
-                    <p>Caracteristicas</p>
-                </td>
-                <td>
-                    <p>$200</p>
                 </td>
                 <td>
                     <input type="number" class="cantidadArt">

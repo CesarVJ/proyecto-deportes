@@ -50,9 +50,8 @@ include_once("menu.php");
     <input id="boton" type="submit" name="enviar" value="Confirmar">
 
 </form>
-<script>
+<script src="./js/validaciones.js?=<?php echo time();?>"> </script>
 
-</script>
 </main>
 
 
