@@ -1,12 +1,13 @@
 <?php
 
+include_once("Equipo.php");
 abstract class Articulo{
     protected $claveProducto;
     protected $nombre;
     protected $precio;
     protected $oEquipo;
 
-    public abstract function buscarPorClave();
+    public abstract function buscar();
 
     public abstract function buscarTodos();
 

@@ -8,6 +8,7 @@ include_once("menu.php");
 
 ?>
 <main>
+<script src="./js/controlJS.js?=<?php echo time();?>"> </script>
     <section class="filtro">
         <form onsubmit="buscarProductos(); return false;">
             <label for="tipoEquipo">Filtrar por equipo:</label>
