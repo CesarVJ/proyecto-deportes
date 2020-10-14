@@ -67,7 +67,12 @@ nav a{
     padding: 1rem 2rem;
     vertical-align: center;
 }
-
+a.menu_opcion{
+	display: block;
+}
+a.menu_inhab{
+	display: none;
+}
 nav a:hover{
     border-bottom-style: solid;
     border-bottom-width: 4px;

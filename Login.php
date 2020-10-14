@@ -8,24 +8,28 @@ include_once("menu.php");
 ?>
 
 <main class="contenedor-login">
-<script src="js/login.js"></script>
-<h1 id="tituloP">Iniciar Sesi&oacute;n</h1>
-<br><br>
-<form name="Log" method="POST" class="login" onsubmit="iniciarSesion();return false;">
-<table>
-        <tr> 
-            <td>Clave de Usuario:</td>
-            <td><input type="number" name="claveUsr" id="claveUsr" class="inForm"></td>
-        </tr>
-        <tr>
-            <td>Contraseña</td>
-            <td><input type="password" name="contra" id="contra" class="inForm"></td>
-        </tr>
-</table>
-<br>
-<input type="submit" name="enviar" id="boton" value="Ingresar">
-</form>
+    <script src="js/login.js"></script>
+    <h1 id="tituloP">Iniciar Sesi&oacute;n</h1>
+    <br><br>
+    <form id="login-form" name="Log" method="POST" class="login" onsubmit="iniciarSesion();return false;">
+        <table>
+            <tr>
+                <td>Clave de Usuario:</td>
+                <td><input type="number" name="claveUsr" id="claveUsr" class="inForm"></td>
+            </tr>
+            <tr>
+                <td>Contraseña</td>
+                <td><input type="password" name="contra" id="contra" class="inForm"></td>
+            </tr>
+        </table>
+        <br>
+        <input type="submit" name="enviar" id="boton" value="Ingresar">
+    </form>
 
+    <section id="bienvenida" style="display:none">
+        <h4>Bienvenido a nuestra tienda de deportes <span id="paraNombre"> !</span></h4>
+        <h5>Ingresaste como <span id="paraTipo"></span></h5>
+    </section>
 </main>
 <?php
 include_once("pie.html")?>

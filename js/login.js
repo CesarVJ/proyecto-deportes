@@ -27,5 +27,52 @@ function iniciarSesion(){
 }
 
 function procesarLogin(respuesta){
-    console.log(respuesta);
+    let nodoForm = document.getElementById("login-form");
+    let nodoBienvenida = document.getElementById("bienvenida");
+    var oNodoNombre = document.getElementById("paraNombre"); 
+    var oNodoTipo = document.getElementById("paraTipo"); 
+
+    var ligaCatalogo = document.getElementById("mnuCatalogo"); 
+    var ligaLogin = document.getElementById("mnuLogin");
+    var ligaRegistro = document.getElementById("mnuRegistro");
+    var ligaSalir = document.getElementById("mnuSalir"); 
+
+    var oDatos;
+    var mensajeError ="";
+
+        try{
+            oDatos = JSON.parse(respuesta);
+            console.log(oDatos);
+            if(oDatos != null){                
+                if(nodoForm === null || nodoBienvenida === null ||
+                    oNodoNombre === null || oNodoTipo === null ||
+                    ligaRegistro === null || ligaLogin === null ||
+                    ligaCatalogo === null || ligaSalir === null){
+                        mensajeError = "Error en el html";
+                }else{
+                    if(oDatos.success){
+                        oNodoNombre.innerHTML = oDatos.data.nombre;
+                        oNodoTipo.innerHTML = oDatos.data.tipo;
+                                                
+                        ligaLogin.classList.add("menu_inhab");
+                        ligaRegistro.classList.add("menu_inhab");
+                        
+                        ligaSalir.classList.add("menu-opcion");
+
+                        nodoForm.style.display = "none";
+                        nodoBienvenida.style.display = "block";
+                        nodoBienvenida.style.fontSize = "2rem";
+                    }else{
+                        mensajeError = oDatos.status;
+                    }
+                }
+            }
+        }catch(error){
+            console.log(error.message);
+            mensajeError = "Error de conversiones";
+        }
+        if(mensajeError != ""){
+            alert(mensajeError);
+        }
+
 }
