@@ -18,7 +18,7 @@ class Souvenir extends Articulo {
 	$arrRet=array();
 	$oSouvenir;
 		if ($oAccesoDatos->conectar()){
-			$sQuery = "SELECT t1.claveArticulo, t1.nombre, t1.precio,
+			$sQuery = "SELECT DISTINCT t1.claveArticulo, t1.nombre, t1.precio,
 					          t1.imagen, t2.color, t2.descripcion, t3.claveEquipo, t3.nombreEquipo
 					   FROM Articulo t1
 							JOIN Souvenir t2 ON t2.claveArticulo = t1.claveArticulo

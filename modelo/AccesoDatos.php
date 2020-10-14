@@ -5,7 +5,7 @@ class AccesoDatos{
     function conectar(){
         $bandera = false;
         try{
-            $this->conexion = new PDO("mysql:host=localhost:3307;dbname=deportes","adminDeportes","deportes1",  array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'UTF8'")); 
+            $this->conexion = new PDO("mysql:host=localhost:3307;dbname=deportes2","adminDeportes","deportes1",  array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'UTF8'")); 
             $bandera = true;
         }catch(Exception $error){
             throw $error;

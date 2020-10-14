@@ -17,10 +17,9 @@ class Balon extends Articulo {
 	$oBalon;
 		if ($oAccesoDatos->conectar()){
 			$sQuery = "SELECT t1.claveArticulo, t1.nombre, t1.precio,
-					          t1.imagen, t2.color, t3.claveEquipo, t3.nombreEquipo
+					          t1.imagen, t2.color
 					   FROM Articulo t1
 							JOIN Balon t2 ON t2.claveArticulo = t1.claveArticulo
-							JOIN Equipo t3 ON t3.claveEquipo = t1.claveEquipo
 					   ORDER BY t1.claveArticulo;
 					";
 			$arrRS = $oAccesoDatos->ejecutarConsulta($sQuery);
@@ -35,8 +34,8 @@ class Balon extends Articulo {
 					$oBalon->setPrecio($arrLinea[2]);
 					$oBalon->setImagen($arrLinea[3]);
 					$oBalon->setColor($arrLinea[4]);
-					$oBalon->getOEquipo()->setClaveEquipo($arrLinea[5]);
-					$oBalon->getOEquipo()->setNombreEquipo($arrLinea[6]);
+					$oBalon->getOEquipo()->setClaveEquipo(0);
+					$oBalon->getOEquipo()->setNombreEquipo("Sin equipo");
 					$arrRet[] = $oBalon;
 				}
 			}

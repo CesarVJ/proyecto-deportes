@@ -1,63 +1,46 @@
-<script>
-    function verifClaves (){
-        var clave1 = document.RegUsr.contra.value;
-        var clave2 = document.RegUsr.confcon.value;
-
-        if (clave1==clave2){
-            document.RegUsr.submit();
-            window.location.href="";//incluir redirección cuando se tenga la página que procese el envío
-        }
-        else
-            alert("Las contraseñas no son iguales");
-    }
-</script>
+<script  type="text/javascript" src="Compruebaprecio.js"></script>
 
 <?php
+$inicio = "index.php";
+$login = "login.php";
+$registro = "RegistroUsuarios.php";
 include_once("cabecera.html");
+include_once("menu.php");
 ?>
 
 <main>
-<h1 id="tituloP">Registro de usuarios</h1>
-<br><br>
-<form name="RegUsr" method="POST">
+    <h1 id="tituloP">Agregar producto</h1>
+    <br><br>
+<form name="AgrProd" method="POST"> 
     <table id="formularios">
         <tr>
-            <td>Nombre:</td>
-            <td><input class="inpForm" name="nom" type="text" required minlength="2"></td>
+            <td>Nombre del producto:</td>
+            <td><input class="inpForm" name="nomprod" type="text" minlength="2" required></td>
         </tr>
         <tr>
-            <td>Apellido paterno:</td>
-            <td><input class="inpForm" name="apepat" type="text" required minlength="2"></td>
+            <td>Equipo:</td>
+            <td><input class="inpForm" name="equipo" type="text" minlength="2" required></td>
         </tr>
         <tr>
-            <td>Apellido materno:</td>
-            <td><input class="inpForm" name="apemat" type="text" required minlength="2"></td>
+            <td>Línea:</td>
+            <td><input class="inpForm" name="linea" type="text" minlength="2" required></td>
         </tr>
         <tr>
-            <td>Número de teléfono:</td>
-            <td><input class="inpForm" name="numtel" type="text" pattern="\d{10}"></td>
+            <td>Precio:</td>
+            <td><input class="inpForm" name="precio" type="number" minlength="2" required></td>
         </tr>
         <tr>
-            <td>Dirección:</td>
-            <td><input class="inpForm" name="direc" type="text" required></td>
+            <td>Características:</td>
+            <td><input class="inpForm" name="carac" type="text" minlength="10" size="50" style="WIDTH: 250px; HEIGHT: 120px" required></td>
         </tr>
         <tr>
-            <td>Correo eléctronico:</td>
-            <td><input class="inpForm" name="email" type="email" required></td>
-        </tr>
-        <tr>
-           <td>Contraseña:</td>
-           <td><input class="inpForm" name="contra" type="password" required></td>
-        </tr>
-        <tr>
-            <td>Confirmar contraseña:</td>
-            <td><input class="inpForm" name="confcon" type="password" required></td>
+            <td>Seleccionar imagen:</td>
+            <td><input id="archivo" class="inpForm" name="carac" type="file" required></td>
         </tr>
     </table>
     <br>
-    <input id="boton" type="submit" name="enviar" value="Confirmar" onclick="verifClaves()">
+    <input id="boton" type="submit" name="enviar" value="Confirmar" onclick="Comprueba()">
 </form>
 </main>
+
 <?php include_once("pie.html")?>
-
-

@@ -16,7 +16,7 @@ class Uniforme extends Articulo {
 	$arrRet=array();
 	$oUniforme;
 		if ($oAccesoDatos->conectar()){
-			$sQuery = "SELECT t1.claveArticulo, t1.nombre, t1.precio,
+			$sQuery = "SELECT DISTINCT t1.claveArticulo, t1.nombre, t1.precio,
 					          t1.imagen, t2.talla, t3.claveEquipo, t3.nombreEquipo
 					   FROM Articulo t1
 							JOIN Uniforme t2 ON t2.claveArticulo = t1.claveArticulo
