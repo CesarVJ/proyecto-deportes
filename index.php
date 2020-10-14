@@ -40,31 +40,7 @@ include_once("menu.php");
                 <td>Cantidad</td>
             </tr>
         </thead>
-        <tbody id="bodyTablaArt">
-            <tr class="articulo">
-                <td>
-                    <p>Producto 1</p>
-                    <img src="./media/Balones/Adidas.jpg" alt="" class="imagen-articulo">
-                </td>
-                <!--<td>
-                    <p>Balones</p>
-                </td>-->
-                <td>
-                    <p>Juventus</p>
-                </td>
-                <td>
-                    <ul>
-                        <li>Color blanco</li>
-                        <li>Otra caracterstica</li>
-                    </ul>
-                </td>
-                <td>
-                    <p>$320</p>
-                </td>
-                <td>
-                    <input type="number" class="cantidadArt">
-                </td>
-            </tr>
+        <tbody id="bodyTablaArt">            
         </tbody>
     </table>
 
