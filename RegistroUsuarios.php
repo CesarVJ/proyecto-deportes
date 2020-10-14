@@ -13,9 +13,36 @@
 </script>
 
 <?php
+session_start();
+include_once("modelo/ErroresAplic.php");
 $inicio = "index.php";
-$registro = "#";
+$registro = "RegistroUsuarios.php";
 $login = "login.php";
+$numeroError = -1;
+
+$claseCatalogo ="menu_opcion";
+$claseSalir = "menu_inhab";
+$claseLogin = "menu_opcion";
+$claseRegistro = "menu_opcion";
+$clasePanelAdmin = "menu_inhab";
+
+
+if (isset($_SESSION["sTipoFirmado"])){
+    $login="bienvenido.php";
+    $claseSalir = "menu_opcion";
+    $claseLogin = "menu_inhab";
+    $claseRegistro = "menu_inhab";
+    if ($_SESSION["sTipoFirmado"]=="Administrador"){
+        $clasePanelAdmin = "menu_opcion";
+    }
+    header("Location: bienvenido.php");
+    exit();
+}
+
+if ($numeroError != -1){
+    header("Location: error.php?error=".$numeroError);
+    exit();
+}
 
 include_once("cabecera.html");
 include_once("menu.php");

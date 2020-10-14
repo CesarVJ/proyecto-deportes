@@ -36,6 +36,8 @@ function procesarLogin(respuesta){
     var ligaLogin = document.getElementById("mnuLogin");
     var ligaRegistro = document.getElementById("mnuRegistro");
     var ligaSalir = document.getElementById("mnuSalir"); 
+    var ligaPanelAdmin = document.getElementById("mnuPanelAdmin"); 
+
 
     var oDatos;
     var mensajeError ="";
@@ -55,10 +57,15 @@ function procesarLogin(respuesta){
                         oNodoTipo.innerHTML = oDatos.data.tipo;
                                                 
                         ligaLogin.classList.add("menu_inhab");
-                        ligaRegistro.classList.add("menu_inhab");
-                        
-                        ligaSalir.classList.add("menu-opcion");
+                        ligaRegistro.classList.add("menu_inhab");                        
+                        ligaSalir.classList.remove("menu_inhab");
+                        ligaSalir.classList.add("menu_opcion");
 
+
+                        if(oDatos.data.tipo == "Administrador"){
+                            ligaPanelAdmin.classList.add("menu_opcion");
+                            ligaPanelAdmin.classList.remove("menu_inhab");
+                        }
                         nodoForm.style.display = "none";
                         nodoBienvenida.style.display = "block";
                         nodoBienvenida.style.fontSize = "2rem";

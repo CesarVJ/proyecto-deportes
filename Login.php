@@ -1,7 +1,28 @@
 <?php
+session_start();
+include_once("modelo/ErroresAplic.php");
 $inicio = "index.php";
 $login = "#";
 $registro = "RegistroUsuarios.php";
+$claseCatalogo ="menu_opcion";
+$claseSalir = "menu_inhab";
+$claseLogin = "menu_opcion";
+$claseRegistro = "menu_opcion";
+$clasePanelAdmin = "menu_inhab";
+
+if (isset($_SESSION["sNomFirmado"])){
+    $login="bienvenido.php";
+    $claseSalir = "menu_opcion";
+    $claseLogin = "menu_inhab";
+    $claseRegistro = "menu_inhab";
+    if ($_SESSION["sTipoFirmado"]=="Administrador"){
+        $clasePanelAdmin = "menu_opcion";
+    }    
+    header("Location: bienvenido.php");
+    exit();
+}
+
+
 include_once("cabecera.html");
 include_once("menu.php");
 
