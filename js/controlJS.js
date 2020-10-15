@@ -65,7 +65,7 @@ function llenarTablaLinea(respuesta) {
                         celda2.innerHTML = equipo;
                         celda3.innerHTML = "Jeje";
                         celda4.innerHTML = "$"+precio;
-                        celda5.innerHTML = '<input type="number" class="cantidadArt" value="0">';
+                        celda5.innerHTML = '<input type="number" id="P'+claveArt+'" onKeyDown="return false" min="0" max="10" class="cantidadArt" value="0">';
                         
                         if(datos.sesion == 0){
                             // Ocultando columa que muestra el precio de los articulos
@@ -76,6 +76,14 @@ function llenarTablaLinea(respuesta) {
                             celda5.style.display = "none";
                         }else{
                             formComprar.style.display = "block";
+                            let inputCant = celda5.querySelector("#P"+claveArt);
+                            let total = document.getElementById("totalPagar");
+
+                            inputCant.addEventListener('change', e =>{
+                                let totalActual = parseInt(total.innerText);
+                                totalActual += precio;
+                                total.innerText = totalActual;                             
+                            });
                         }
                     }
                     nuevoBody.id="bodyTablaArt";

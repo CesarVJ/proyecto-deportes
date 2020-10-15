@@ -61,6 +61,7 @@ include_once("menu.php");
     </table>
 
     <form action="" id="formComprar" style="display:none;">
+        <p>Total a pagar (Con precio de envio): $<span id="totalPagar">100</span></p>
         <input type="submit" class="btnHacerCompra" value="Realizar compra">
     </form>
 </main>
