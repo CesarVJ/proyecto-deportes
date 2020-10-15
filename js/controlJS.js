@@ -65,7 +65,7 @@ function llenarTablaLinea(respuesta) {
                         celda2.innerHTML = equipo;
                         celda3.innerHTML = "Jeje";
                         celda4.innerHTML = "$"+precio;
-                        celda5.innerHTML = '<input type="number" id="P'+claveArt+'" onKeyDown="return false" min="0" max="10" class="cantidadArt" value="0">';
+                        celda5.innerHTML = '<input type="number" id="P'+claveArt+'" min="0" max="30" class="cantidadArt" value="0"> <br> Subtotal: $<span class ="subtotal" id="sub'+claveArt+'">0</span>';
                         
                         if(datos.sesion == 0){
                             // Ocultando columa que muestra el precio de los articulos
@@ -77,12 +77,13 @@ function llenarTablaLinea(respuesta) {
                         }else{
                             formComprar.style.display = "block";
                             let inputCant = celda5.querySelector("#P"+claveArt);
-                            let total = document.getElementById("totalPagar");
+                            let subtotal = celda5.querySelector("#sub"+claveArt);
 
                             inputCant.addEventListener('change', e =>{
-                                let totalActual = parseInt(total.innerText);
-                                totalActual += precio;
-                                total.innerText = totalActual;                             
+                                //let totalActual = parseInt(total.innerText);
+                                //totalActual += precio;
+                                //total.innerText = totalActual;        
+                                subtotal.innerText = parseFloat(e.target.value) * precio;                    
                             });
                         }
                     }
@@ -101,6 +102,22 @@ function llenarTablaLinea(respuesta) {
     if(mensajeError != ""){
         alert(mensajeError);
     }
+
+
+}
+function mostrarTotal(){
+    let subtotales = document.getElementsByClassName("subtotal");
+    let total = document.getElementById("totalPagar");
+    let cajaPago = document.getElementById("cajaPago");
+    var totalPagar = 0;
+    console.log(subtotales);
+
+    for(let i = 0; i < subtotales.length; i++){
+        console.log(subtotales[i]);
+        totalPagar += parseFloat(subtotales[i].innerText);
+    }
+    total.innerText = totalPagar;
+    cajaPago.style.display = "block";
 
 
 }

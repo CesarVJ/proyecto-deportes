@@ -61,8 +61,12 @@ include_once("menu.php");
     </table>
 
     <form action="" id="formComprar" style="display:none;">
-        <p>Total a pagar (Con precio de envio): $<span id="totalPagar">100</span></p>
+        <button id ="mostTotal" class="btnHacerCompra" style="padding: 0.5rem; margin-bottom: 1rem;" onclick="mostrarTotal(); return false;">Mostrar total a pagar</button>
+        <div id="cajaPago" style="display:none">
+        <p style="font-size: 1.2rem; font-weight: bold;">Total a pagar (Con precio de envio): $<span id="totalPagar">100</span></p>
         <input type="submit" class="btnHacerCompra" value="Realizar compra">
+        </div>
+
     </form>
 </main>
 <?php include_once("pie.html")?>
