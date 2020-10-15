@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
 include_once("../modelo/Uniforme.php");
 include_once("../modelo/Balon.php");
 include_once("../modelo/Souvenir.php");
@@ -10,6 +10,7 @@ $nErr=-1;
 $oArt;
 $arrEncontrado = array();
 $sCadJson = "";
+$firmado = 0;
 
 if (isset($_REQUEST["linea"])&&!empty($_REQUEST["linea"])){
     try{
@@ -28,6 +29,9 @@ if (isset($_REQUEST["linea"])&&!empty($_REQUEST["linea"])){
         }else {
             error_log($error->getFile()." ".$error->getLine()." ".$error->getMessage(), 0);
         }
+        if (isset($_SESSION["sTipoFirmado"])){
+            $firmado = 1;
+        }
     }catch(Exception $e){
         error_log($e->getFile()." ".$e->getLine()." ".$e->getMessage(),0);
         //$nErr = ErroresAplic::ERROR_EN_BD;
@@ -40,6 +44,7 @@ if ($nErr==-1){
     $sCadJson = '{
         "success": true,
         "status": "ok",
+        "sesion": '.$firmado.',
         "data":[';
     foreach($arrEncontrado as $oArt){
         $sCadJson = $sCadJson.'{

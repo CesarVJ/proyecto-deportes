@@ -1,11 +1,7 @@
 window.onload = e => {
-    console.log("Consultados");
+    //console.log("Consultadoando equipos ...");
     consultarEquipos();
 };
-
-function buscarProductos() {
-    console.log("Hola");
-}
 
 function consultarLinea() {
     var selectElement = document.getElementById("tipoLinea");
@@ -32,6 +28,11 @@ function consultarLinea() {
 function llenarTablaLinea(respuesta) {
     var oNodoTbl = document.getElementById("articulos");
     var oTblBody = document.getElementById("bodyTablaArt"); 
+    var cabeceraPrecio = document.getElementById("precio_col"); 
+    var cabeceraCantidad = document.getElementById("cantidad_col"); 
+
+    var formComprar = document.getElementById("formComprar"); 
+    
     var datos;
     var mensajeError = "";
     var nuevoBody = document.createElement("tbody");
@@ -63,8 +64,19 @@ function llenarTablaLinea(respuesta) {
                         celda1.innerHTML = '<p>'+nombArt+'</p><img src="./media/'+nombImagen+'" class="imagen-articulo">' ;
                         celda2.innerHTML = equipo;
                         celda3.innerHTML = "Jeje";
-                        celda4.innerHTML = precio;
-						celda5.innerHTML = '<input type="number" class="cantidadArt" value="0">';
+                        celda4.innerHTML = "$"+precio;
+                        celda5.innerHTML = '<input type="number" class="cantidadArt" value="0">';
+                        
+                        if(datos.sesion == 0){
+                            // Ocultando columa que muestra el precio de los articulos
+                            cabeceraPrecio.style.display = "none";
+                            celda4.style.display = "none";
+                            //Ocultando la columna que permite elegir cantidad de articulos
+                            cabeceraCantidad.style.display = "none";
+                            celda5.style.display = "none";
+                        }else{
+                            formComprar.style.display = "block";
+                        }
                     }
                     nuevoBody.id="bodyTablaArt";
                     oNodoTbl.replaceChild(nuevoBody, oTblBody);
@@ -85,6 +97,9 @@ function llenarTablaLinea(respuesta) {
 
 }
 
+function buscarProductos() {
+    console.log("Buscando ..");
+}
 
 function consultarEquipos() {
     var request = new XMLHttpRequest();

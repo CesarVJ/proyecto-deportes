@@ -52,15 +52,15 @@ include_once("menu.php");
                 <!--<td>Linea</td>-->
                 <td>Equipo</td>
                 <td>Carcateristicas</td>
-                <td>Precio</td>
-                <td>Cantidad</td>
+                <td id ="precio_col">Precio</td>
+                <td id ="cantidad_col">Cantidad</td>
             </tr>
         </thead>
         <tbody id="bodyTablaArt">            
         </tbody>
     </table>
 
-    <form action="" id="formComprar">
+    <form action="" id="formComprar" style="display:none;">
         <input type="submit" class="btnHacerCompra" value="Realizar compra">
     </form>
 </main>

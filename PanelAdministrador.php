@@ -19,6 +19,8 @@ if (isset($_SESSION["sTipoFirmado"])){
     $claseRegistro = "menu_inhab";
     if ($_SESSION["sTipoFirmado"]=="Administrador"){
         $clasePanelAdmin = "menu_opcion";
+    }else{
+        $numeroError = ErroresAplic::SIN_PERMISOS;
     }
 }else{
     $numeroError = ErroresAplic::SIN_SESION;
