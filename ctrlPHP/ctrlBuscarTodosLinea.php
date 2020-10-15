@@ -47,12 +47,23 @@ if ($nErr==-1){
         "sesion": '.$firmado.',
         "data":[';
     foreach($arrEncontrado as $oArt){
+        $arrCaract = "[]";
+        if($_REQUEST["linea"]=='U'){
+            $arrCaract = '["Tallas: '. $oArt->getTalla().'"]';
+        }else if($_REQUEST["linea"]=='B'){
+            $arrCaract = '["Color: '. $oArt->getColor().'"]';
+        }else if($_REQUEST["linea"]=='S'){
+            $arrCaract = '["Color:'. $oArt->getColor().'","  Descripción:'.$oArt->getDescripcion().'"]';
+        }else if($_REQUEST["linea"]=='R'){
+            $arrCaract = '["Talla:'. $oArt->getTalla().'","  Color:'.$oArt->getColor().'"]';
+        }
         $sCadJson = $sCadJson.'{
                         "claveArticulo": '.$oArt->getClaveArticulo().',
                         "nombreArticulo": "'.$oArt->getNombre().'",
                         "imagen": "'.$oArt->getImagen().'",
                         "equipo": "'.$oArt->getOEquipo()->getNombreEquipo().'",
-                        "precio": '.$oArt->getPrecio().'
+                        "precio": '.$oArt->getPrecio().',
+                        "caracteristicas": '.$arrCaract.'
                     },';
     }
     $sCadJson = substr($sCadJson,0, strlen($sCadJson)-1);

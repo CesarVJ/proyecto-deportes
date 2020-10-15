@@ -61,9 +61,13 @@ function llenarTablaLinea(respuesta) {
                         let nombArt = datos.data[i].nombreArticulo;
                         let equipo = datos.data[i].equipo
                         let precio = datos.data[i].precio;
+                        let caracteristicas = datos.data[i].caracteristicas;
+                        console.log(caracteristicas);
+
+
                         celda1.innerHTML = '<p>'+nombArt+'</p><img src="./media/'+nombImagen+'" class="imagen-articulo">' ;
                         celda2.innerHTML = equipo;
-                        celda3.innerHTML = "Jeje";
+                        celda3.innerHTML = '<p style="text-align:justify;">'+caracteristicas+'</p>';
                         celda4.innerHTML = "$"+precio;
                         celda5.innerHTML = '<input type="number" id="P'+claveArt+'" min="0" max="30" class="cantidadArt" value="0"> <br> Subtotal: $<span class ="subtotal" id="sub'+claveArt+'">0</span>';
                         
