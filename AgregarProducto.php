@@ -38,7 +38,7 @@ include_once("menu.php");
 <main>
     <h1 id="tituloP">Agregar producto</h1>
     <br><br>
-<form name="AgrProd" method="POST"> 
+<form name="AgrProd" method="POST" onsubmit="return Comprueba()"> 
     <table id="formularios">
         <tr>
             <td>Nombre del producto:</td>
@@ -50,7 +50,12 @@ include_once("menu.php");
         </tr>
         <tr>
             <td>Línea:</td>
-            <td><input class="inpForm" name="linea" type="text" minlength="2" required></td>
+            <td><select class="inpForm" name="linea" id="inpForm" required>
+                <option value="U">Uniformes</option>
+                <option value="R">Ropa para niños</option>
+                <option value="B">Balones</option>
+                <option value="S">Souvenirs</option>
+            </select></td>
         </tr>
         <tr>
             <td>Precio:</td>
@@ -66,7 +71,7 @@ include_once("menu.php");
         </tr>
     </table>
     <br>
-    <input id="boton" type="submit" name="enviar" value="Confirmar" onclick="Comprueba()">
+    <input id="boton" type="submit" name="enviar" value="Confirmar" >
 </form>
 </main>
 
