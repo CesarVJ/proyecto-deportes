@@ -30,7 +30,6 @@ function llenarTablaLinea(respuesta) {
     var oTblBody = document.getElementById("bodyTablaArt"); 
     var cabeceraPrecio = document.getElementById("precio_col"); 
     var cabeceraCantidad = document.getElementById("cantidad_col"); 
-
     var formComprar = document.getElementById("formComprar"); 
     
     var datos;
@@ -54,7 +53,6 @@ function llenarTablaLinea(respuesta) {
                         celda3 = oLinea.insertCell(2);
                         celda4 = oLinea.insertCell(3);
 						celda5 = oLinea.insertCell(4);
-                        //celda6 = oLinea.insertCell(5);
 
                         let claveArt = datos.data[i].claveArticulo;
                         let nombImagen = datos.data[i].imagen;
@@ -63,7 +61,6 @@ function llenarTablaLinea(respuesta) {
                         let precio = datos.data[i].precio;
                         let caracteristicas = datos.data[i].caracteristicas;
                         console.log(caracteristicas);
-
 
                         celda1.innerHTML = '<p>'+nombArt+'</p><img src="./media/'+nombImagen+'" class="imagen-articulo">' ;
                         celda2.innerHTML = equipo;
@@ -83,10 +80,7 @@ function llenarTablaLinea(respuesta) {
                             let inputCant = celda5.querySelector("#P"+claveArt);
                             let subtotal = celda5.querySelector("#sub"+claveArt);
 
-                            inputCant.addEventListener('change', e =>{
-                                //let totalActual = parseInt(total.innerText);
-                                //totalActual += precio;
-                                //total.innerText = totalActual;        
+                            inputCant.addEventListener('change', e =>{      
                                 subtotal.innerText = parseFloat(e.target.value) * precio;                    
                             });
                         }
@@ -106,13 +100,13 @@ function llenarTablaLinea(respuesta) {
     if(mensajeError != ""){
         alert(mensajeError);
     }
-
-
 }
 function mostrarTotal(){
     let subtotales = document.getElementsByClassName("subtotal");
     let total = document.getElementById("totalPagar");
     let cajaPago = document.getElementById("cajaPago");
+    let btnComprar = document.getElementById("btnComprar");
+
     var totalPagar = 0;
     console.log(subtotales);
 
@@ -120,10 +114,20 @@ function mostrarTotal(){
         console.log(subtotales[i]);
         totalPagar += parseFloat(subtotales[i].innerText);
     }
+    if(totalPagar > 1000){
+        btnComprar.disabled = false;
+        btnComprar.style.backgroundColor = "#009879";
+        btnComprar.style.cursor = "pointer";
+        //console.log("Puede comprar: "+totalPagar);
+
+    }else{
+        btnComprar.disabled = true;
+        btnComprar.style.backgroundColor = "#cdc9c3";
+        btnComprar.style.cursor = "no-drop";
+        //console.log("NO puede comprar: "+totalPagar);
+    }
     total.innerText = totalPagar;
     cajaPago.style.display = "block";
-
-
 }
 
 function buscarProductos() {
@@ -149,8 +153,6 @@ function buscarProductos() {
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     request.send(sQueryString);
 }
-
-
 
 function consultarEquipos() {
     var request = new XMLHttpRequest();
@@ -216,7 +218,6 @@ function enviarDatosPago(numeroTarjeta, fechaExpiracion, codigoSeguridad) {
 }
 
 function validarFecha(fecha) {
-    let fechaConvertida = null;
     var anio = 0,
         mes = 0;
     if (fecha.match(/^\d{4}\-\d{2}$/)) {

@@ -149,10 +149,6 @@ footer > address{
 }
 
 .articulos tbody tr {
-    border-bottom: 1px #fff solid;
-}
-
-.articulos tbody tr:nth-of-type(odd) {
     border-bottom: 2px #009879 solid;
 }
 
