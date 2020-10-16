@@ -23,7 +23,6 @@ function iniciarSesion(){
 		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		request.send(sQueryString);        
     }
-
 }
 
 function procesarLogin(respuesta){

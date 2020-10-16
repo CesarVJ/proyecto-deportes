@@ -60,7 +60,7 @@ include_once("menu.php");
         </tbody>
     </table>
 
-    <form onsubmit="validarCompra(); return false;" id="formComprar" style="display:none;">
+    <form onsubmit="return validarPago();" action="DireccionEnvio.php" id="formComprar" style="display:none;">
         <button id ="mostTotal" class="btnHacerCompra" style="padding: 0.5rem; margin-bottom: 1rem;" onclick="mostrarTotal(); return false;">Mostrar total a pagar</button>
         <div id="cajaPago" style="display:none">
         <p style="font-size: 1.2rem; font-weight: bold;">Total a pagar (Con precio de envio): $<span id="totalPagar">100</span></p>
@@ -69,5 +69,6 @@ include_once("menu.php");
         </div>
     </form>
 </main>
+<script src="./js/validaciones.js"></script>
 <?php include_once("pie.html")?>
 </div>

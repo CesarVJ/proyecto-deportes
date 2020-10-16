@@ -1,6 +1,8 @@
 <?php
 include_once("../modelo/Administrador.php");
 include_once("../modelo/Cliente.php");
+include_once("../modelo/ErroresAplic.php");
+
 session_start();
 $nErr="";
 $oUsuario=new Cliente();
@@ -23,13 +25,14 @@ if (isset($_REQUEST["claveUsr"]) && !empty($_REQUEST["claveUsr"]) &&
 					$_SESSION["sNomFirmado"] = $oUsuario->getNombreAdmin();
 					$_SESSION["sTipoFirmado"] = "Administrador";
 				}else 
-					$nErr = "Usuario Desconocido";
+                $nErr = ErroresAplic::USR_DESCONOCIDO;
             }
         }catch(Exception $error){
             error_log($e->getFile()." ".$e->getLine()." ".$e->getMessage(),0);
+            $nErr = ErroresAplic::ERROR_EN_BD;
         }
 }else{
-    $nErr = "faltan datos";
+    $nErr = ErroresAplic::FALTAN_DATOS;
 }
 
 if ($nErr==""){
@@ -42,9 +45,11 @@ if ($nErr==""){
         }
     }';
 }else{
+    $oErr = new ErroresAplic();
+    $oErr->setError($nErr);
     $sCadJson = '{
         "success": false,
-        "status": "",
+        "status": "'.$oErr->getTextoError().'",
         "data":{}
     }';
 }

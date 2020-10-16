@@ -1,17 +1,3 @@
-<script>
-    function verifClaves (){
-        var clave1 = document.RegUsr.contra.value;
-        var clave2 = document.RegUsr.confcon.value;
-
-        if (clave1==clave2){
-            document.RegUsr.submit();
-            window.location.href="";//incluir redirección cuando se tenga la página que procese el envío
-        }
-        else
-            alert("Las contraseñas no son iguales");
-    }
-</script>
-
 <?php
 session_start();
 include_once("modelo/ErroresAplic.php");
@@ -52,7 +38,7 @@ include_once("menu.php");
 <main>
 <h1 id="tituloP">Registro de usuarios</h1>
 <br><br>
-<form name="RegUsr" method="POST">
+<form name="RegUsr" method="POST" onsubmit="return validarRegistro();" action="index.php">
     <table id="formularios">
         <tr>
             <td>Nombre:</td>
@@ -80,16 +66,17 @@ include_once("menu.php");
         </tr>
         <tr>
            <td>Contraseña:</td>
-           <td><input class="inpForm" name="contra" type="password" required></td>
+           <td><input id="clave1" class="inpForm" name="contra" type="password" required></td>
         </tr>
         <tr>
             <td>Confirmar contraseña:</td>
-            <td><input class="inpForm" name="confcon" type="password" required></td>
+            <td><input id="clave2" class="inpForm" name="confcon" type="password" required></td>
         </tr>
     </table>
     <br>
-    <input id="boton" type="submit" name="enviar" value="Confirmar" onclick="verifClaves()">
+    <input id="boton" type="submit" name="enviar" value="Confirmar">
 </form>
+<script src="./js/validaciones.js"></script>
 </main>
 <?php include_once("pie.html")?>
 
