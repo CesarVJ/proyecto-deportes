@@ -33,17 +33,17 @@ include_once("menu.php");
     <form id="login-form" name="Log" method="POST" class="login" onsubmit="iniciarSesion();return false;">
     <h1 id="tituloP">Iniciar Sesi&oacute;n</h1>
     <br><br>
-        <table>
+        <table id="formularios">
             <tr>
                 <td>Clave de Usuario:</td>
-                <td><input type="number" name="claveUsr" id="claveUsr" class="inForm"></td>
+                <td><input type="number" name="claveUsr" id="claveUsr" class="inpForm"></td>
             </tr>
             <tr>
-                <td>Contraseña</td>
-                <td><input type="password" name="contra" id="contra" class="inForm"></td>
+                <td>Contraseña:</td>
+                <td><input type="password" name="contra" id="contra" class="inpForm"></td>
             </tr>
         </table>
-        <br>
+        <br><br>
         <input type="submit" name="enviar" id="boton" value="Ingresar">
     </form>
 

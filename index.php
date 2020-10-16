@@ -46,7 +46,7 @@ include_once("menu.php");
     </section>
 
     <table class="articulos" id="articulos">
-        <thead>
+        <thead id="op">
             <tr>
                 <td>Producto</td>
                 <!--<td>Linea</td>-->

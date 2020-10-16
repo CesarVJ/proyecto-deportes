@@ -41,11 +41,11 @@ include_once("menu.php");
 <form name="busq" method="POST">
     <table id="formularios">
         <tr>
-            <td>Busqueda:&nbsp;</td>
+            <td>B&uacute;squeda:&nbsp;</td>
             <td><input class="inpForm" name="busqueda" type="text" required></td>
         </tr>
     </table>  
-    <br>
+    <br><br>
     <input id="boton" type="submit" name="enviar" value="Confirmar" onclick="Comprueba()">
 </form>
 </main>

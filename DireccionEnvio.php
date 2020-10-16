@@ -40,36 +40,36 @@ include_once("menu.php");
 <br><br>
 
 <form name="DirrecEnvio" method="POST" id="formEnvio" action="pago.php">
-
+    
 <input type="checkbox" id="check"> Utilizar mi Direcci&oacute;n de usuario
 
     <table id="formularios">
         <tr>
-            <td>Calle</td>
+            <td>Calle:&nbsp;</td>
             <td><input id="calle" type="text" class="inpForm" name="calle" required></td>
         </tr>
         <tr>
-            <td>Colonia</td>
+            <td>Colonia:&nbsp;</td>
             <td><input id="colonia" type="text" class="inpForm" name="colonia" required></td>
         </tr>
         <tr>
-            <td>Ciudad</td>
+            <td>Ciudad:&nbsp;</td>
             <td><input id="ciudad" type="text" class="inpForm" name="ciudad" required> </td>
         </tr>
         <tr>
-            <td>C&oacute;digo postal</td>
+            <td>C&oacute;digo postal:&nbsp;</td>
             <td><input id="cp" type="number" min="1" class="inpForm" name="codpost" required></td>
         </tr>
         <tr>
-            <td>N&uacute;mero exterior</td>
+            <td>N&uacute;mero exterior:&nbsp;</td>
             <td><input id="exterior" type="number" min="1" name="numext" class="inpForm" required></td>
         </tr>
         <tr>
-            <td>N&uacute;mero interior</td>
+            <td>N&uacute;mero interior:&nbsp;</td>
             <td><input id="interior" type="number" min="1" name="numint" class="inpForm" required></td>
         </tr>
         <tr>
-            <td>Estado</td>
+            <td>Estado:&nbsp;</td>
             <td><input id="estado" type="text" class="inpForm" name="estado" required> </td>
         </tr>
     </table>

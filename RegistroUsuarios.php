@@ -73,7 +73,7 @@ include_once("menu.php");
             <td><input id="clave2" class="inpForm" name="confcon" type="password" required></td>
         </tr>
     </table>
-    <br>
+    <br><br>
     <input id="boton" type="submit" name="enviar" value="Confirmar">
 </form>
 <script src="./js/validaciones.js"></script>
