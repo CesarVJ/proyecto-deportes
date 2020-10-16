@@ -128,7 +128,29 @@ function mostrarTotal(){
 
 function buscarProductos() {
     console.log("Buscando ..");
+    var selectElement = document.getElementById("tipoEquipo");
+    var request = new XMLHttpRequest();
+    var equipoSeleccionado = selectElement.value;
+    var sQueryString = "equipo=" + equipoSeleccionado;
+    var url = "ctrlPhp/ctrlBuscarPorEquipo.php" + "?" + sQueryString;
+
+    request.onreadystatechange = function () {
+        if (request.readyState === 4 &&
+            request.status === 200) {
+            llenarTablaLinea(request.responseText);
+            //console.log(request.responseText);
+        } else {
+            if (request.status != 200 && request.status != 0)
+                alert("Hubo error, status " + request.status);
+        }
+    };
+
+    request.open("GET", url, true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    request.send(sQueryString);
 }
+
+
 
 function consultarEquipos() {
     var request = new XMLHttpRequest();
