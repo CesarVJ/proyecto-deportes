@@ -1,198 +1,81 @@
-window.onload = e => {
-    //console.log("Consultadoando equipos ...");
+$(document).ready(function () {
     consultarEquipos();
-};
+    $("#filtrarEquipos").button();
+    $("#filtrarLineas").button();
 
-function consultarLinea() {
-    var selectElement = document.getElementById("tipoLinea");
-    var request = new XMLHttpRequest();
-    var lineaSeleccionada = selectElement.value;
-    var sQueryString = "linea=" + lineaSeleccionada;
-    var url = "ctrlPhp/ctrlBuscarTodoslinea.php" + "?" + sQueryString;
+    $("#mensaje").dialog({
+        autoOpen: false,
+        show: {
+            effect: "scale",
+            duration: 650
+        },
+        hide: {
+            effect: "clip",
+            duration: 650
+        },
+        modal: true
+    });
 
-    request.onreadystatechange = function () {
-        if (request.readyState === 4 &&
-            request.status === 200) {
-            llenarTablaLinea(request.responseText);
-        } else {
-            if (request.status != 200 && request.status != 0)
-                alert("Hubo error, status " + request.status);
+    $( "#tipoEquipo" ).selectmenu();
+    $( "#tipoLinea" ).selectmenu();
+
+
+
+    $("#filtrarEquipos").click(function(event){
+        event.preventDefault();
+        buscarProductos();
+    });
+    $("#filtrarLineas").click(function(event){
+        event.preventDefault();
+        consultarLinea();
+    });
+
+    $("#formComprar").submit(function(event){
+        event.preventDefault();
+        if(validarPago()){
+            window.location.href="DireccionEnvio.php";        
         }
-    };
+    });
 
-    request.open("GET", url, true);
-    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    request.send(sQueryString);
-}
-
-function llenarTablaLinea(respuesta) {
-    var oNodoTbl = document.getElementById("articulos");
-    var oTblBody = document.getElementById("bodyTablaArt"); 
-    var cabeceraPrecio = document.getElementById("precio_col"); 
-    var cabeceraCantidad = document.getElementById("cantidad_col"); 
-    var formComprar = document.getElementById("formComprar"); 
-    
-    var datos;
-    var mensajeError = "";
-    var nuevoBody = document.createElement("tbody");
-    var celda1, celda2, celda3, celda4, celda5, celda6;
-    var oLinea;
-
-    try{
-        datos = JSON.parse(respuesta);
-        console.log(datos);
-        if(datos != null){
-            if(oTblBody === null || oNodoTbl ===null){
-                mensajeError = "Error en html";
-            }else{
-                if(datos.success){
-                    for(var i=0; i< datos.data.length; i++){
-						oLinea = nuevoBody.insertRow(-1);
-						celda1 = oLinea.insertCell(0);
-						celda2 = oLinea.insertCell(1);
-                        celda3 = oLinea.insertCell(2);
-                        celda4 = oLinea.insertCell(3);
-						celda5 = oLinea.insertCell(4);
-
-                        let claveArt = datos.data[i].claveArticulo;
-                        let nombImagen = datos.data[i].imagen;
-                        let nombArt = datos.data[i].nombreArticulo;
-                        let equipo = datos.data[i].equipo
-                        let precio = datos.data[i].precio;
-                        let caracteristicas = datos.data[i].caracteristicas;
-                        console.log(caracteristicas);
-
-                        celda1.innerHTML = '<p>'+nombArt+'</p><img src="./media/'+nombImagen+'" class="imagen-articulo">' ;
-                        celda2.innerHTML = equipo;
-                        celda3.innerHTML = '<p style="text-align:justify;">'+caracteristicas+'</p>';
-                        celda4.innerHTML = "$"+precio;
-                        celda5.innerHTML = '<input type="number" id="P'+claveArt+'" min="0" max="30" class="cantidadArt" value="0"> <br> Subtotal: $<span class ="subtotal" id="sub'+claveArt+'">0</span>';
-                        
-                        if(datos.sesion == 0){
-                            // Ocultando columa que muestra el precio de los articulos
-                            cabeceraPrecio.style.display = "none";
-                            celda4.style.display = "none";
-                            //Ocultando la columna que permite elegir cantidad de articulos
-                            cabeceraCantidad.style.display = "none";
-                            celda5.style.display = "none";
-                        }else{
-                            formComprar.style.display = "block";
-                            let inputCant = celda5.querySelector("#P"+claveArt);
-                            let subtotal = celda5.querySelector("#sub"+claveArt);
-
-                            inputCant.addEventListener('change', e =>{      
-                                subtotal.innerText = parseFloat(e.target.value) * precio;                    
-                            });
-                        }
-                    }
-                    nuevoBody.id="bodyTablaArt";
-                    oNodoTbl.replaceChild(nuevoBody, oTblBody);
-                }else{
-                    mensajeError = datos.status;
-                }
-            }
-        }
-
-    }catch(error){
-        console.log(error.message);
-        mensajeError = "Error de conversion";
-    }
-    if(mensajeError != ""){
-        alert(mensajeError);
-    }
-}
-function mostrarTotal(){
-    let subtotales = document.getElementsByClassName("subtotal");
-    let total = document.getElementById("totalPagar");
-    let cajaPago = document.getElementById("cajaPago");
-    let btnComprar = document.getElementById("btnComprar");
-
-    var totalPagar = 0;
-    console.log(subtotales);
-
-    for(let i = 0; i < subtotales.length; i++){
-        console.log(subtotales[i]);
-        totalPagar += parseFloat(subtotales[i].innerText);
-    }
-    if(totalPagar > 1000){
-        btnComprar.disabled = false;
-        btnComprar.style.backgroundColor = "#009879";
-        btnComprar.style.cursor = "pointer";
-        //console.log("Puede comprar: "+totalPagar);
-
-    }else{
-        btnComprar.disabled = true;
-        btnComprar.style.backgroundColor = "#cdc9c3";
-        btnComprar.style.cursor = "no-drop";
-        //console.log("NO puede comprar: "+totalPagar);
-    }
-    total.innerText = totalPagar;
-    cajaPago.style.display = "block";
-}
-
-function buscarProductos() {
-    console.log("Buscando ..");
-    var selectElement = document.getElementById("tipoEquipo");
-    var request = new XMLHttpRequest();
-    var equipoSeleccionado = selectElement.value;
-    var sQueryString = "equipo=" + equipoSeleccionado;
-    var url = "ctrlPhp/ctrlBuscarPorEquipo.php" + "?" + sQueryString;
-
-    request.onreadystatechange = function () {
-        if (request.readyState === 4 &&
-            request.status === 200) {
-            llenarTablaLinea(request.responseText);
-            //console.log(request.responseText);
-        } else {
-            if (request.status != 200 && request.status != 0)
-                alert("Hubo error, status " + request.status);
-        }
-    };
-
-    request.open("GET", url, true);
-    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    request.send(sQueryString);
-}
+    $("#mostTotal").click(function(event){
+        event.preventDefault();
+        mostrarTotal();
+    });
+});
 
 function consultarEquipos() {
-    var request = new XMLHttpRequest();
-    var url = "ctrlPhp/ctrlConsultarEquipos.php";
-
-    request.onreadystatechange = function () {
-        console.log(request.status);
-        console.log(request.readyState);
-
-        if (request.readyState == 4 && request.status === 200) {
-            mostrarEquipos(request.response);
-        } else {
-            if (request.status != 200 && request.status != 0) {
-                alert("Ocurrio un error, status " + request.status);
-            }
+    $.getJSON({
+        url:"ctrlPhp/ctrlConsultarEquipos.php",
+        data:{
+            // No se requiere enviar datos
+        },
+        success: function(oDatos) {
+            mostrarEquipos(oDatos);
+        },
+        error: 	function(objRequest, status){
+            mostrarMensaje("Error al invocar al servidor, intente posteriormente");
+            console.log(status);
         }
-    };
-
-    request.open("GET", url, true);
-    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    request.send();
+    });
 }
 
-function mostrarEquipos(Equipos) {
-    let elementoSelect = document.getElementById("tipoEquipo");
-    var datos;
+function mostrarEquipos(datos) {
+    let elementoSelect = $("#tipoEquipo");
     var mensajeError = "";
     try {
-        console.log(Equipos)
-        datos = JSON.parse(Equipos);
+        console.log(datos)
         if (datos != null) {
             if (datos.success) {
-                elementoSelect.innerHTML = "";
+                elementoSelect.html("");
                 for (let i = 0; i < datos.data.length; i++) {
-                    let elementoOption = document.createElement("option");
-                    elementoOption.value = datos.data[i].claveEquipo;
-                    elementoOption.id = datos.data[i].claveEquipo;
-                    elementoOption.innerHTML = datos.data[i].nombreEquipo;
-                    elementoSelect.appendChild(elementoOption);
+                    let elementoOption = $("<option>");
+                    elementoOption.val(datos.data[i].claveEquipo);
+                    elementoOption.prop("id",datos.data[i].claveEquipo);
+                    elementoOption.html(datos.data[i].nombreEquipo);
+                    elementoSelect.append(elementoOption);
                 }
+                elementoSelect.val('1')
+                elementoSelect.selectmenu("refresh");
             } else {
                 mensajeError = datos.status;
             }
@@ -205,6 +88,165 @@ function mostrarEquipos(Equipos) {
         mensajeError = "Error";
     }
     if (mensajeError != "") {
+        mostrarMensaje(mensajeError);
+    }
+}
+
+function buscarProductos() {
+    console.log("Buscando ..");
+    var selectElement = $("#tipoEquipo");
+    var equipoSeleccionado = selectElement.val();
+
+    $.getJSON({
+        url:"ctrlPhp/ctrlBuscarPorEquipo.php",
+        data:{
+            equipo: equipoSeleccionado
+        },
+        success: function(oDatos) {
+            llenarTablaLinea(oDatos);
+                },
+        error: 	function(objRequest, status){
+            $("#texto_mensaje").text("Error al invocar al servidor, intente posteriormente");
+            $("#mensaje").dialog("open");
+            console.log(status);
+        }
+    });
+}
+
+function llenarTablaLinea(datos) {
+    var oNodoTbl = $("#articulos");
+    var oTblBody = $("#bodyTablaArt"); 
+    var cabeceraPrecio = $("#precio_col"); 
+    var cabeceraCantidad = $("#cantidad_col"); 
+    var formComprar = $("#formComprar"); 
+    
+    var mensajeError = "";
+    var celda1, celda2, celda3, celda4, celda5;
+    var oLinea;
+
+    try{
+        console.log(datos);
+        if(datos != null){
+            if(oTblBody === null || oNodoTbl ===null){
+                mensajeError = "Error en html";
+            }else{
+                if(datos.success){
+                    oTblBody.empty();
+                    for(var i=0; i< datos.data.length; i++){
+						oLinea = $("<tr>");
+						celda1 = $("<td>");
+						celda2 = $("<td>");
+                        celda3 = $("<td>");
+                        celda4 = $("<td>");
+						celda5 = $("<td>");
+
+                        let claveArt = datos.data[i].claveArticulo;
+                        let nombImagen = datos.data[i].imagen;
+                        let nombArt = datos.data[i].nombreArticulo;
+                        let equipo = datos.data[i].equipo
+                        let precio = datos.data[i].precio;
+                        let caracteristicas = datos.data[i].caracteristicas;
+                        console.log(caracteristicas);
+
+                        celda1.html('<p>'+nombArt+'</p><img src="./media/'+nombImagen+'" class="imagen-articulo">' );
+                        celda2.html(equipo);
+                        celda3.html('<p style="text-align:justify;">'+caracteristicas+'</p>');
+                        celda4.html("$"+precio);
+                        celda5.html('<input type="number" id="P'+claveArt+'" min="0" max="30" class="cantidadArt" value="0"> <br> Subtotal: $<span class ="subtotal" id="sub'+claveArt+'">0</span>');
+                        
+                        if(datos.sesion == 0){
+                            // Ocultando columa que muestra el precio de los articulos
+                            cabeceraPrecio.addClass("oculto");
+                            celda4.addClass("oculto");
+                            //Ocultando la columna que permite elegir cantidad de articulos
+                            cabeceraCantidad.addClass("oculto");
+                            celda5.addClass("oculto");
+                        }else{
+                            formComprar.removeClass("oculto");
+                            let inputCant = celda5.find("#P"+claveArt);
+                            let subtotal = celda5.find("#sub"+claveArt);
+
+                            inputCant.change(e =>{    
+                                console.log(e.target.value);  
+                                subtotal.text(parseFloat(e.target.value) * precio);                    
+                            });
+                        }
+                        oLinea.append(celda1,celda2,celda3,celda4,celda5);
+                        oTblBody.append(oLinea);
+                    }
+                }else{
+                    mensajeError = datos.status;
+                }
+            }
+        }
+    }catch(error){
+        console.log(error.message);
+        mensajeError = "Error de conversion";
+    }
+    if(mensajeError != ""){
         alert(mensajeError);
     }
+}
+
+function consultarLinea() {
+    var selectElement = $("#tipoLinea");
+    var lineaSeleccionada = selectElement.val();
+
+    $.getJSON({
+        url:"ctrlPhp/ctrlBuscarTodoslinea.php",
+        data:{
+            linea: lineaSeleccionada
+        },
+        success: function(oDatos) {
+            llenarTablaLinea(oDatos);
+        },
+        error: 	function(objRequest, status){
+            $("#texto_mensaje").text("Error al invocar al servidor, intente posteriormente");
+            $("#mensaje").dialog("open");
+            console.log(status);
+        }
+    });
+}
+
+function mostrarTotal(){
+    let subtotales = $(".subtotal");
+    let total = $("#totalPagar");
+    let cajaPago = $("#cajaPago");
+    let btnComprar = $("#btnComprar");
+
+    var totalPagar = 0;
+    console.log(subtotales);
+    
+    subtotales.each((id, elemento)=>{
+        totalPagar += parseFloat(elemento.innerText);
+        console.log(elemento.innerText);
+    })
+
+    if(totalPagar > 1000){
+        btnComprar.prop("disabled", false);
+        btnComprar.css("backgroundColor","#009879");
+        btnComprar.css("cursor","pointer");
+    }else{
+        btnComprar.prop("disabled", true);
+        btnComprar.css("backgroundColor","#cdc9c3");
+        btnComprar.css("cursor","no-drop");
+    }
+    total.text(totalPagar);
+    cajaPago.removeClass("oculto");
+}
+
+function validarPago() {
+    let totalElement = $("#totalPagar");
+    let total = parseFloat(totalElement.text());
+    if (total <= 1000) {
+        mostrarMensaje("Aun no cumples con el minimo de compra ($1000)");
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function mostrarMensaje(mensaje){
+    $("#texto_mensaje").text(mensaje);
+    $("#mensaje").dialog("open");
 }

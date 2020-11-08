@@ -38,31 +38,31 @@ include_once("menu.php");
 <main>
 <h1 id="tituloP">Registro de usuarios</h1>
 <br><br>
-<form name="RegUsr" method="POST" onsubmit="return validarRegistro();" action="index.php">
+<form id="formRegistro" name="RegUsr" method="POST" onsubmit="return false;" >
     <table id="formularios">
         <tr>
             <td>Nombre:</td>
-            <td><input class="inpForm" name="nom" type="text" required minlength="2"></td>
+            <td><input id="nombreCliente" class="inpForm" name="nom" type="text" required minlength="2"></td>
         </tr>
         <tr>
             <td>Apellido paterno:</td>
-            <td><input class="inpForm" name="apepat" type="text" required minlength="2"></td>
+            <td><input id="apPaterno" class="inpForm" name="apepat" type="text" required minlength="2"></td>
         </tr>
         <tr>
             <td>Apellido materno:</td>
-            <td><input class="inpForm" name="apemat" type="text" required minlength="2"></td>
+            <td><input id="apMaterno" class="inpForm" name="apemat" type="text" required minlength="2"></td>
         </tr>
         <tr>
             <td>N&uacute;mero de tel&eacute;fono:</td>
-            <td><input class="inpForm" name="numtel" type="text" pattern="\d{10}"></td>
+            <td><input id="numTelefono" class="inpForm" name="numtel" type="text" pattern="\d{10}"></td>
         </tr>
         <tr>
             <td>Direcci&oacute;n:</td>
-            <td><input class="inpForm" name="direc" type="text" required></td>
+            <td><input id="direc" class="inpForm" name="direc" type="text" required></td>
         </tr>
         <tr>
             <td>Correo electr&oacute;nico:</td>
-            <td><input class="inpForm" name="email" type="email" required></td>
+            <td><input id="correoElec" class="inpForm" name="email" type="email" required></td>
         </tr>
         <tr>
            <td>Contraseña:</td>
@@ -74,9 +74,16 @@ include_once("menu.php");
         </tr>
     </table>
     <br><br>
-    <input id="boton" type="submit" name="enviar" value="Confirmar">
+    <center>
+    <input id="botonRegistro" type="submit" name="enviar" value="Registrarse" style="padding: 0.6rem 3rem;">
+    </center>
 </form>
-<script src="./js/validaciones.js"></script>
+<div id="mensaje" title="Mensaje">
+        <h4>Alerta</h4>
+        <p id="texto_mensaje"></p>
+        <br />
+    </div>
+<script src="./js/ctrlRegistroUsuarios.js"></script>
 </main>
 <?php include_once("pie.html")?>
 

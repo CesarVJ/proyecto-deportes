@@ -24,16 +24,16 @@ include_once("menu.php");
 
 ?>
 <main>
-<script src="./js/controlJS.js?=<?php echo time();?>"> </script>
+    <script src="./js/controlJS.js?=<?php echo time();?>"> </script>
     <section class="filtro" style="display:flex; justify-content: space-between;">
-        <form onsubmit="buscarProductos(); return false;">
+        <form onsubmit="return false;">
             <label for="tipoEquipo">Filtrar por equipo:</label>
             <select id="tipoEquipo" name="tipoEquipo">
                 <option value=""></option>
             </select>
-            <input type="submit" value="Filtrar" />
+            <input id="filtrarEquipos" type="submit" value="Filtrar" />
         </form>
-        <form onsubmit="consultarLinea(); return false;">
+        <form onsubmit="return false;">
             <label for="tipoLinea">Filtrar por Linea:</label>
             <select id="tipoLinea" name="tipoLinea">
                 <option value="U">Uniformes</option>
@@ -41,7 +41,7 @@ include_once("menu.php");
                 <option value="B">Balones</option>
                 <option value="S">Souvenirs</option>
             </select>
-            <input type="submit" value="Filtrar" />
+            <input id="filtrarLineas" type="submit" value="Filtrar" />
         </form>
     </section>
 
@@ -49,26 +49,30 @@ include_once("menu.php");
         <thead id="op">
             <tr>
                 <td>Producto</td>
-                <!--<td>Linea</td>-->
                 <td>Equipo</td>
                 <td>Carcateristicas</td>
-                <td id ="precio_col">Precio</td>
-                <td id ="cantidad_col">Cantidad</td>
+                <td id="precio_col">Precio</td>
+                <td id="cantidad_col">Cantidad</td>
             </tr>
         </thead>
-        <tbody id="bodyTablaArt">            
+        <tbody id="bodyTablaArt">
         </tbody>
     </table>
 
-    <form onsubmit="return validarPago();" action="DireccionEnvio.php" id="formComprar" style="display:none;">
-        <button id ="mostTotal" class="btnHacerCompra" style="padding: 0.5rem; margin-bottom: 1rem;" onclick="mostrarTotal(); return false;">Mostrar total a pagar</button>
-        <div id="cajaPago" style="display:none">
-        <p style="font-size: 1.2rem; font-weight: bold;">Total a pagar (Con precio de envio): $<span id="totalPagar">100</span></p>
-        <input type="submit" class="btnHacerCompra" value="Realizar compra" id="btnComprar">
-        <p>Minimo de compra son $1000</p>
+    <form onsubmit="return false;" id="formComprar" class="oculto"><!--action="DireccionEnvio.php"-->
+        <button id="mostTotal" class="btnHacerCompra" style="padding: 0.5rem; margin-bottom: 1rem;">Mostrar total a pagar</button>
+        <div id="cajaPago" class="oculto">
+            <p style="font-size: 1.2rem; font-weight: bold;">Total a pagar (Con precio de envio): $<span
+                    id="totalPagar">100</span></p>
+            <input type="submit" class="btnHacerCompra" value="Realizar compra" id="btnComprar">
+            <p>Minimo de compra son $1000</p>
         </div>
     </form>
+    <div id="mensaje" title="Mensaje">
+        <h4>Alerta</h4>
+        <p id="texto_mensaje"></p>
+        <br />
+    </div>
 </main>
-<script src="./js/validaciones.js"></script>
 <?php include_once("pie.html")?>
 </div>

@@ -39,15 +39,40 @@ private $arrPedidos;
 		}
 		return $bRet;
 	}
+
+
+	public function insertar() {
+		$accesoDatos=new AccesoDatos();
+		$sQuery="";
+		$nRet = -1;
+			if (empty($this->contrasenia) ||
+				empty($this->nombreCompleto)||
+				empty($this->telefonoCasa)||
+				empty($this->direccion)||
+				empty($this->correo))
+				throw new Exception("Cliente->insertar: faltan datos");
+			else{
+				if ($accesoDatos->conectar()){
+					$sQuery = parent::getInsertar();
+					$sQuery = $sQuery."
+						INSERT INTO cliente (
+							claveUsuario, nombreCompleto, telefonoCasa, 
+							direccion, correo) 
+						VALUES (LAST_INSERT_ID(), 
+						'".$this->nombreCompleto."', '".$this->telefonoCasa."', 
+						'".$this->direccion."', '".$this->correo."');";
+						error_log($sQuery,0);
+					$nRet = $accesoDatos->ejecutarComando($sQuery);
+					$accesoDatos->desconectar();		
+				}
+			}
+			return $nRet;
+		}
 	public function buscar() {
 		throw new Exception("No implementada");
 	}
 
 	public function buscarTodos() {
-		throw new Exception("No implementada");
-	}
-
-	public function insertar() {
 		throw new Exception("No implementada");
 	}
 
