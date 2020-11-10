@@ -28,20 +28,20 @@ include_once("menu.php");
     <section class="filtro" style="display:flex; justify-content: space-between;">
         <form onsubmit="return false;">
             <label for="tipoEquipo">Filtrar por equipo:</label>
-            <select id="tipoEquipo" name="tipoEquipo">
+            <select id="tipoEquipo" name="tipoEquipo" class="ui-menu ui-corner-bottom ui-widget ui-widget-header">
                 <option value=""></option>
             </select>
-            <input id="filtrarEquipos" type="submit" value="Filtrar" />
+            <input id="filtrarEquipos" type="submit" value="Filtrar" class="ui-button ui-corner-all" />
         </form>
         <form onsubmit="return false;">
             <label for="tipoLinea">Filtrar por Linea:</label>
-            <select id="tipoLinea" name="tipoLinea">
+            <select id="tipoLinea" name="tipoLinea" class="ui-menu ui-corner-bottom ui-widget ui-widget-header">
                 <option value="U">Uniformes</option>
                 <option value="R">Ropa para niños</option>
                 <option value="B">Balones</option>
                 <option value="S">Souvenirs</option>
             </select>
-            <input id="filtrarLineas" type="submit" value="Filtrar" />
+            <input id="filtrarLineas" type="submit" value="Filtrar" class="ui-button ui-corner-all"/>
         </form>
     </section>
 
@@ -50,7 +50,7 @@ include_once("menu.php");
             <tr>
                 <td>Producto</td>
                 <td>Equipo</td>
-                <td>Carcateristicas</td>
+                <td>Carater&iacute;sticas</td>
                 <td id="precio_col">Precio</td>
                 <td id="cantidad_col">Cantidad</td>
             </tr>
@@ -60,11 +60,11 @@ include_once("menu.php");
     </table>
 
     <form onsubmit="return false;" id="formComprar" class="oculto"><!--action="DireccionEnvio.php"-->
-        <button id="mostTotal" class="btnHacerCompra" style="padding: 0.5rem; margin-bottom: 1rem;">Mostrar total a pagar</button>
+        <button id="mostTotal" class="btnHacerCompra ui-button ui-corner-all" style="padding: 0.5rem; margin-bottom: 1rem;">Mostrar total a pagar</button>
         <div id="cajaPago" class="oculto">
             <p style="font-size: 1.2rem; font-weight: bold;">Total a pagar (Con precio de envio): $<span
                     id="totalPagar">100</span></p>
-            <input type="submit" class="btnHacerCompra" value="Realizar compra" id="btnComprar">
+            <input type="submit" class="btnHacerCompra ui-button ui-corner-all" value="Realizar compra" id="btnComprar">
             <p>Minimo de compra son $1000</p>
         </div>
     </form>

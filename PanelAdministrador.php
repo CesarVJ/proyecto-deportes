@@ -40,17 +40,17 @@ include_once("menu.php");
    <div class="opcion">
    <img src="./media/logoAgregar.png" alt="" class="imagen-opcion">
     <br>
-     <button id="ir" onclick="location.href='AgregarProducto.php'">Añadir Productos</button>
+     <button id="ir" onclick="location.href='AgregarProducto.php'" class="ui-button ui-corner-all">Añadir Productos</button>
    </div>
    <div class="opcion">
        <img src="./media/logoModificar.png" alt="" class="imagen-opcion">
        <br>
-       <button id="ir" onclick="location.href='ModificarProducto.php'">Modificar Productos</button>
+       <button id="ir" onclick="location.href='ModificarProducto.php'" class="ui-button ui-corner-all">Modificar Productos</button>
    </div>
    <div class="opcion">
        <img src="./media/logoEliminar.png" alt="" class="imagen-opcion">
        <br>
-       <button id="ir" onclick="location.href='EliminarProducto.php'">Eliminar Productos</button>
+       <button id="ir" onclick="location.href='EliminarProducto.php'" class="ui-button ui-corner-all">Eliminar Productos</button>
    </div>
 </main>
 <?php

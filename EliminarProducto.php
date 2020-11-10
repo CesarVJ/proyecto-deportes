@@ -46,7 +46,7 @@ include_once("menu.php");
         </tr>
     </table>  
     <br><br>
-    <input id="boton" type="submit" name="enviar" value="Confirmar" onclick="Comprueba()">
+    <input id="boton" type="submit" name="enviar" value="Confirmar" class="ui-button ui-corner-all" onclick="Comprueba()">
 </form>
 </main>
 <?php

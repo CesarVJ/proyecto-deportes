@@ -39,9 +39,9 @@ include_once("menu.php");
 <h1 id="TituloP">Direcci&oacute;n de env&iacute;o</h1>
 <br><br>
 
-<form name="DirrecEnvio" method="POST" id="formEnvio" action="pago.php">
-    
-<input type="checkbox" id="check"> Utilizar mi Direcci&oacute;n de usuario
+<form name="DirrecEnvio" method="POST" id="formEnvio" onsubmit="return false;">
+<label for="check">Utilizar mi Direcci&oacute;n de usuario</label>
+<input type="checkbox" id="check" name="check"> 
 
     <table id="formularios">
         <tr>
@@ -75,11 +75,16 @@ include_once("menu.php");
     </table>
     
     <br>
-    <input id="boton" type="submit" name="enviar" value="Confirmar">
+    <input id="boton" type="submit" name="enviar" value="Confirmar" class="ui-button ui-corner-all">
 
 </form>
 <script src="./js/validacionDireccion.js?=<?php echo time();?>"> </script>
 </main>
+<div id="mensaje" title="Mensaje">
+        <h4>Alerta</h4>
+        <p id="texto_mensaje"></p>
+        <br />
+    </div>
 
 
 <?php

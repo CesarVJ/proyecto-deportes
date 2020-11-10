@@ -74,9 +74,7 @@ include_once("menu.php");
         </tr>
     </table>
     <br><br>
-    <center>
-    <input id="botonRegistro" type="submit" name="enviar" value="Registrarse" style="padding: 0.6rem 3rem;">
-    </center>
+    <input id="botonRegistro" type="submit" name="enviar" value="Registrar" class="ui-button ui-corner-all">
 </form>
 <div id="mensaje" title="Mensaje">
         <h4>Alerta</h4>

@@ -33,7 +33,7 @@ include_once("cabecera.html");
 include_once("menu.php");
 ?>
 <main class="pago">
-    <form class="formulario-pago" id="formDatosPago" action="index.php" method="POST">
+    <form class="formulario-pago" id="formDatosPago" onsubmit="return false;" method="POST">
         <div class="contenedor-pago">
             <h1 id="titulo-pago">Tarjeta de D&eacute;bito</h1>
 
@@ -49,7 +49,7 @@ include_once("menu.php");
 
             <div class="fecha-expiracion">
                 <p class="pago">Fecha de expiración:</p>
-                <input id="expiracion" type="month" name="fechaExpiracion" required>
+                <input id="expiracion" name="fechaExpiracion" class="ui-widget ui-widget-content" required>
             </div>
 
             <div class="codigo-seguridad">
@@ -57,7 +57,7 @@ include_once("menu.php");
                 <input id="codigo_seguridad" type="number" max="999" name="codigoSeguridad" required>
             </div>
             <div class="pagar">
-                <input type="submit" value="Realizar pago">
+                <input id="btnEnviar" type="submit" value="Realizar pago" class="ui-button ui-corner-all">
             </div>
         </div>
 
@@ -65,6 +65,11 @@ include_once("menu.php");
 
         </div>
     </form>
+    <div id="mensaje" title="Mensaje">
+        <h4>Alerta</h4>
+        <p id="texto_mensaje"></p>
+        <br />
+    </div>
     <script src="./js/validacionesDatosPago.js"></script>
 </main>
 <?php include_once("pie.html")?>

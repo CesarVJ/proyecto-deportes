@@ -238,6 +238,15 @@ footer > address{
     margin-left: 45.5%;
 }
 
+#botonRegistro{
+    width: 140px;
+    height: 35px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 45.5%;
+    text-align: center;
+}
+
 /* Seleccionar Archivos */
 #archivo{
     width: 600px;
@@ -359,6 +368,14 @@ footer > address{
 
     #boton{
         width: 110px;
+        height: 35px;
+        font-size: 20px;
+        font-weight: bold;
+        margin-left: 40%;
+    }
+    
+    #botonRegistro{
+        width: 150px;
         height: 35px;
         font-size: 20px;
         font-weight: bold;

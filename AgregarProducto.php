@@ -50,7 +50,7 @@ include_once("menu.php");
         </tr>
         <tr>
             <td>Línea:</td>
-            <td><select class="inpForm" name="linea" id="inpForm" required>
+            <td><select class="inpForm ui-menu ui-corner-bottom ui-widget-header" name="linea" id="inpForm" required>
                 <option value="U">Uniformes</option>
                 <option value="R">Ropa para niños</option>
                 <option value="B">Balones</option>
@@ -59,7 +59,7 @@ include_once("menu.php");
         </tr>
         <tr>
             <td>Precio:</td>
-            <td><input class="inpForm" name="precio" type="number" minlength="2" required></td>
+            <td><input class="inpForm ui-spinner" name="precio" type="number" minlength="2" required></td>
         </tr>
         <tr>
             <td>Características:</td>
@@ -71,7 +71,7 @@ include_once("menu.php");
         </tr>
     </table>
     <br>
-    <input id="boton" type="submit" name="enviar" value="Confirmar" >
+    <input id="boton" type="submit" name="enviar" value="Confirmar" class="ui-button ui-corner-all">
 </form>
 </main>
 

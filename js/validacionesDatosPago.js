@@ -1,35 +1,77 @@
-let formularioPago = document.getElementById("formDatosPago");
-
-formularioPago.addEventListener("submit", function(e){
-    validarDatosPago(e)
-});
+$.datepicker.regional['es'] = {
+    closeText: 'Cerrar',
+    prevText: 'Anterior',
+    nextText: 'Siguiente',
+    currentText: 'Hoy',
+    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+    monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+    weekHeader: 'Sem',
+    firstDay: 0,
+    isRTL: false,
+    showMonthAfterYear: false,
+    yearSuffix: ''
+};
+$.datepicker.setDefaults($.datepicker.regional['es']);
 
 function sumarDias(fecha, dias){
     fecha.setDate(fecha.getDate() + dias);
     return fecha;
   }
 
-function validarDatosPago(e) {
-    let titular = document.getElementById("nom_titular");
-    let numTarjeta = document.getElementById("num_tarjeta");
-    let fechaExpiracion = document.getElementById("expiracion");
-    let codSeguridad = document.getElementById("codigo_seguridad");
+$(document).ready(function(){
 
-    console.log("pero que ha pasado");
-    if (validarFecha(fechaExpiracion.value) && validarTarjeta(numTarjeta) && validarCodSeguridad(codSeguridad)) {
-        var meses = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
-        var diasSemana = new Array("Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado");
-        var fecha = new Date();
-        fecha = sumarDias(fecha, 3);
-        let fechaLlegada = (diasSemana[fecha.getDay()] + ", " + fecha.getDate() + " de " + meses[fecha.getMonth()] + " de " + fecha.getFullYear());        
-        alert("Su compra se ha sido realizada con exito,  fecha estimada de llegada: "+fechaLlegada + "Sera redirigido al catalogo de productos" );
-        return true;
-    } else { // Datos invalidos
-        alert("Los datos de pago son incorrectos");
-        return false;
-    }
-}
+    $("#expiracion").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        showButtonPanel: true,
+        dateFormat: 'MM yy',
+        onClose: function(dateText, inst){
+            var anio = inst.selectedYear, mes = inst.selectedMonth+1;
+            $(this).datepicker('setDate', new Date(anio, mes, 0));
+        },
+    });
 
+    $("#mensaje").dialog({
+        autoOpen: false,
+        show: {
+            effect: "scale",
+            duration: 650
+        },
+        hide: {
+            effect: "clip",
+            duration: 650
+        },
+        modal: true
+    });
+
+
+    var f = function (){
+        var frmCaptura = $("#formDatosPago");
+        var oTitular = $("#nom_titular");
+        var oNumTarj = $("#num_tarjeta");
+        var oFechaExp = $("#expiracion");
+        var oCodSeg = $("#codigo_seguridad");
+        console.log("pero que ha pasado");
+        if ((oFechaExp.val() != "") && validarTarjeta(oNumTarj.val()) && validarCodSeguridad(oCodSeg.val())){
+            var meses = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+            var diasSemana = new Array("Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado");
+            var fecha = new Date();
+            fecha = sumarDias(fecha, 3);
+            let fechaLlegada = (diasSemana[fecha.getDay()] + ", " + fecha.getDate() + " de " + meses[fecha.getMonth()] + " de " + fecha.getFullYear());        
+            mostrarMensaje("Su compra se ha sido realizada con exito,  fecha estimada de llegada: "+fechaLlegada + "Sera redirigido al catalogo de productos" );
+            setInterval(function(){
+                $(location).attr('href','index.php');
+            },3000);
+            return true;
+        } else { // Datos invalidos
+            mostrarMensaje("Los datos de pago son incorrectos");
+            //$(location).attr('href','index.php');
+            return false;
+        }
+    };
+    $("#btnEnviar").click(f);
+});
+  
 function validarFecha(fecha) {
     var anio = 0,
         mes = 0;
@@ -49,9 +91,9 @@ function validarFecha(fecha) {
 }
 
 function validarTarjeta(numeroDeTarjeta) {
-    if (numeroDeTarjeta != null) {
+    if (numeroDeTarjeta != "") {
         let regex = /^\d{16}$/;
-        let result= (numeroDeTarjeta.value+"").match(regex);
+        let result= (numeroDeTarjeta).match(regex);
         console.log("tarjet:"+result);
         return result;
     }
@@ -60,12 +102,17 @@ function validarTarjeta(numeroDeTarjeta) {
 }
 
 function validarCodSeguridad(codigo) {
-    if (codigo != null) {
+    if (codigo != "") {
         let regex = /^\d{3}$/;
-        let res= (codigo.value+"").match(regex);
+        let res= (codigo).match(regex);
         console.log("codigo: "+ res);
         return res;
     }
     console.log("Mal codigo");
     return false;
+}
+
+function mostrarMensaje(mensaje){
+    $("#texto_mensaje").text(mensaje);
+    $("#mensaje").dialog("open");
 }

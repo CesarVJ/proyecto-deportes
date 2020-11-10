@@ -30,7 +30,7 @@ include_once("menu.php");
 
 <main class="contenedor-login">
     <script src="js/login.js"></script>
-    <form id="login-form" name="Log" method="POST" class="login" onsubmit="iniciarSesion();return false;">
+    <form id="login-form" name="Log" method="POST" class="login" onsubmit="return false;">
     <h1 id="tituloP">Iniciar Sesi&oacute;n</h1>
     <br><br>
         <table id="formularios">
@@ -51,6 +51,11 @@ include_once("menu.php");
         <h3>Bienvenido a nuestra tienda de deportes <span id="paraNombre"> !</span></h3>
         <h4>Ingresaste como <span id="paraTipo"></span></h4>
     </section>
+    <div id="mensaje" title="Mensaje">
+        <h4>Alerta</h4>
+        <p id="texto_mensaje"></p>
+        <br />
+    </div>
 </main>
 <?php
 include_once("pie.html")?>
